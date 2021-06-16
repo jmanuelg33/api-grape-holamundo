@@ -3,10 +3,9 @@ module Routes
     module Endpoints
       #  Persona
       class Persona < Grape::API
-        
         desc 'testing calls'
         params do
-          requires :name, type: Integer
+          requires :name, type: String
         end
         get '/persona' do
           "from persona grettings! #{params[:name]}"

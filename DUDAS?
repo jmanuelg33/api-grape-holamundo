@@ -1,2 +1,5 @@
-Como puedo crear prefix para los endpoints
-sin tener  que estar especificando ej: '/persona', '/persona/edit' 
+1. Como puedo crear prefix para los endpoints sin tener  que estar especificando ej: '/persona', '/persona/edit' 
+2. hacer un require local de una carpeta en el proyecto
+3. rake abc como crear tareas
+4. sequel abc
+5. usar las variables de entorno

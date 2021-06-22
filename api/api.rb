@@ -8,7 +8,7 @@ module MyApp
     version :v1
     content_type :json, 'application/json'
 
-    # rescue_from :all
+    rescue_from :all
 
     helpers do
       def logger

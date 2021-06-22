@@ -17,14 +17,7 @@ module DAO
     end
 
     def update(dni, name, age, status, description)
-      person = model.find(dni: dni)
-      # p.dni = dni
-      # p.name = name || p.name
-      # p.age = age || p.age
-      # p.status = status || p.status
-      # p.description = description || p.description
-      # p.save   
-
+      person = model.first(dni: dni)
       person.update(
         dni: dni,
         name: name ||person.name,

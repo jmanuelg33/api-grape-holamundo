@@ -16,7 +16,7 @@ module Models
       y = date[0..1]
       m = date[2..3]
       d = date [3..4]
-      Date.valid_date? y.to_i, m.to_i, d.to_i
+      !Date.valid_date? y.to_i, m.to_i, d.to_i
     end
   end
 

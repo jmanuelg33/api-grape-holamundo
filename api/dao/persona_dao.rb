@@ -16,8 +16,15 @@ module DAO
       )
     end
 
-    def update(dni, name, age, status ,description)
+    def update(dni, name, age, status, description)
       person = model.find(dni: dni)
+      # p.dni = dni
+      # p.name = name || p.name
+      # p.age = age || p.age
+      # p.status = status || p.status
+      # p.description = description || p.description
+      # p.save   
+
       person.update(
         dni: dni,
         name: name ||person.name,
@@ -25,15 +32,6 @@ module DAO
         status: status ||person.status,
         description: description ||person.description
       )
-
-
-      # p.dni = dni
-      # p.name = name || p.name
-      # p.age = age || p.age
-      # p.status = status || p.status
-      # p.description = description || p.description
-      # p "valido o no #{p.valid?}"
-      # p.save   
     end
     
     def delete(id)

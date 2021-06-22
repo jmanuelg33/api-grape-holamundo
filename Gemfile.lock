@@ -49,6 +49,8 @@ GEM
       dry-equalizer (~> 0.2)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.5, >= 1.5.2)
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
     grape (1.5.3)
       activesupport
       builder
@@ -83,6 +85,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -91,6 +94,7 @@ DEPENDENCIES
   dry-container!
   dry-types!
   dry-validation!
+  faker!
   grape!
   grape-entity!
   pg!

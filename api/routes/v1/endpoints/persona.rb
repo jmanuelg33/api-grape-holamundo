@@ -32,8 +32,8 @@ module Routes
             requires :persona, type: Hash do
               requires :name, type: String, allow_blank: false
               requires :age, type: Integer, allow_blank: false
-              requires :dni, type: Symbol, values: %i[single maried]
-              requires :status, type: String
+              requires :dni, type: String, allow_blank: false
+              requires :status, type: String, values: %w[single maried]
               requires :description, type: String
             end
           end
@@ -53,11 +53,11 @@ module Routes
               optional :name, type: String
               optional :age, type: Integer
               requires :dni, type: String, allow_blank: false
-              optional :status, type: Symbol, 
-              values: { 
-                value: %i[single maried], 
-                message: "must be a single or maried status!" 
-              }
+              optional :status, type: Symbol,
+                                values: {
+                                  value: %i[single maried],
+                                  message: 'must be a single or maried status!'
+                                }
             end
           end
 

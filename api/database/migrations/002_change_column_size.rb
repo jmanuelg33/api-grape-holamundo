@@ -4,7 +4,7 @@ Sequel.migration do
   transaction
 
   up do
-    alter_table(:persona) do
+    alter_table(:personas) do
       set_column_type :description, String, size: 255
     end
   end

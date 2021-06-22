@@ -6,7 +6,7 @@ Sequel.migration do
   up do
     extension :pg_triggers
 
-    create_table(:persona) do
+    create_table(:personas) do
       Serial   :id, primary_key: true
       String   :dni, unique: true
       String   :name, size: 50, null: false
@@ -18,15 +18,15 @@ Sequel.migration do
       DateTime :updated_at, default: Sequel.function(:NOW)
     end
 
-    pgt_updated_at(:persona,
+    pgt_updated_at(:personas,
                    :updated_at,
                    function_name: 'update_updated_at_column_at_persona_table',
                    trigger_name: :set_updated_at)
   end
 
   down do
-    drop_trigger(:persona, :set_updated_at)
+    drop_trigger(:personas, :set_updated_at)
     drop_function(:update_updated_at_column_at_persona_table)
-    drop_table(:persona)
+    drop_table(:personas)
   end
 end

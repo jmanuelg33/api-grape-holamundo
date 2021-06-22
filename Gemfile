@@ -17,4 +17,8 @@ source 'http://rubygems.org' do
   group :test do
    gem 'faker'
   end
+
+  group :development do
+  gem 'shotgun'
+  end
 end

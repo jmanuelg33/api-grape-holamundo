@@ -34,7 +34,7 @@ module Routes
               requires :age, type: Integer, allow_blank: false
               requires :dni, type: String, allow_blank: false
               requires :status, type: String, values: %w[single maried]
-              requires :description, type: String
+              requires :description, type: String 
             end
           end
 

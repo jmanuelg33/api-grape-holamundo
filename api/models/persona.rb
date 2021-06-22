@@ -3,7 +3,7 @@ require './api/tasks/service_config'
 
 module Models
 
-  class Persona < Sequel::Model(ServiceConfig[:database][:persona])
+  class Persona < Sequel::Model(ServiceConfig[:database])
     unrestrict_primary_key
 
     def validate

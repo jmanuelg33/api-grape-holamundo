@@ -80,6 +80,8 @@ GEM
       sequel (>= 4.49.0)
     sequel_postgresql_triggers (1.5.0)
       sequel
+    shotgun (0.9.2)
+      rack (>= 1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     zeitwerk (2.4.2)
@@ -103,6 +105,7 @@ DEPENDENCIES
   sequel!
   sequel-seed!
   sequel_postgresql_triggers!
+  shotgun!
 
 BUNDLED WITH
    2.2.20

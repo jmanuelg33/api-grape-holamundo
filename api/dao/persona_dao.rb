@@ -6,7 +6,7 @@ module DAO
     include Singleton
 
     def add(dni, name, age, status, description)
-      # using datasets
+      # si el dni existe no deberia guardarlo, no crea un nuevo registro lo que hace es un update
       model.create(
         dni: dni,
         name: name,

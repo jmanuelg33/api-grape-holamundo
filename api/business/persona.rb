@@ -7,12 +7,14 @@ module Business
   class PersonaBusiness
     include Singleton
 
-    def add_or_update(dni, name, age, status,description)
-      persona = DAO::PersonaDAO.instance.search(dni)
+    def add_or_update(person)
+      persona = DAO::PersonaDAO.instance.search(person[:dni])
       if persona
-        DAO::PersonaDAO.instance.update(dni, name, age, status,description)
+        DAO::PersonaDAO.instance.update(person[:dni], person[:name],
+          person[:age], person[:status],person[:description])
       else
-        DAO::PersonaDAO.instance.add(dni, name, age, status,description)
+        DAO::PersonaDAO.instance.add(person[:dni], person[:name], 
+          person[:age], person[:status],person[:description])
       end
     end
 

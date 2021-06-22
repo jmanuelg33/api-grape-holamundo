@@ -8,6 +8,15 @@ module MyApp
     version :v1
     content_type :json, 'application/json'
 
+    rescue_from :all
+
+    helpers do
+      def logger
+        API.logger
+        # how to use=> logger.info "#{persona.name} as created"  if persona
+      end
+    end
+
     mount Routes::V1::API
   end
 end

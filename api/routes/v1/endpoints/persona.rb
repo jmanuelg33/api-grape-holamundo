@@ -4,17 +4,13 @@ module Routes
     module Endpoints
       #  Persona
       class Persona < Grape::API
-
         resource :persona do
           # resource begin
 
           # fn index
           desc 'testing calls'
-          params do
-            requires :name, type: String
-          end
           get do
-            "from persona grettings! #{params[:name]}"
+            Business::PersonaBusiness.instance.all
           end
 
           # fn search
@@ -25,74 +21,68 @@ module Routes
 
           get :search do
             person = Business::PersonaBusiness.instance.find(params[:dni])
-            return person.to_hash if !person.nil?
-            {data: 'No data!'}
+            return person.to_hash unless person.nil?
+
+            'No data!'
           end
 
-        # fn create Persona
-        desc 'create a person'
-        params do
-          requires :persona, type: Hash do
-            requires :name, type: String,allow_blank: false
-            requires :age, type: Integer, allow_blank: false
-            requires :dni, type: String, allow_blank: false
-            requires :status, type: String
-            requires :description, type:String
+          # fn create Persona
+          desc 'create a person'
+          params do
+            requires :persona, type: Hash do
+              requires :name, type: String, allow_blank: false
+              requires :age, type: Integer, allow_blank: false
+              requires :dni, type: Symbol, values: %i[single maried]
+              requires :status, type: String
+              requires :description, type: String
+            end
           end
-        end
 
-        post :create do
-          persona = params[:persona]
-          persona = Business::PersonaBusiness.instance.add_or_update(
-            persona[:dni],
-            persona[:name],
-            persona[:age],
-            persona[:status],
-            persona[:description])
+          post :create do
+            persona = Business::PersonaBusiness.instance.add_or_update(params[:persona])
 
-            return persona.to_hash  if persona
+            return persona.to_hash if persona
+
             'nothing happend!'
-        end
-
-        # fn update Persona
-        desc 'update a person'
-        params do
-          requires :persona, type: Hash do
-            optional :name, type: String
-            optional :age, type: Integer
-            requires :dni, type: String, allow_blank: false
-            optional :status, type: String
-            optional :description, type:String
           end
-        end
 
-        put :update do
-          persona = params[:persona]
-          persona = Business::PersonaBusiness.instance.add_or_update(   # return a model
-            persona[:dni],
-            persona[:name],
-            persona[:age],
-            persona[:status],
-            persona[:description])
+          # fn update Persona
+          desc 'update a person'
+          params do
+            requires :persona, type: Hash do
+              optional :name, type: String
+              optional :age, type: Integer
+              requires :dni, type: String, allow_blank: false
+              optional :status, type: Symbol, 
+              values: { 
+                value: %i[single maried], 
+                message: "must be a single or maried status!" 
+              }
+            end
+          end
 
-          return persona.to_hash  if persona
-          'nothing happend!'
-        end
+          put :update do
+            persona = Business::PersonaBusiness.instance.add_or_update(params[:persona])
 
-        # fn delete a Persona
-        desc 'delete a person'
-        params do
-          requires :id, type:Integer, allow_blank: false
-        end
+            return persona.to_hash if persona
 
-        delete do
-          return {status: "ok", data:"deleted"}  if Business::PersonaBusiness.instance.delete(params[:id])
-          'nothing happend!'
-        end
+            'nothing happend!'
+          end
+
+          # fn delete a Persona
+          desc 'delete a person'
+          params do
+            requires :id, type: Integer, allow_blank: false
+          end
+
+          delete do
+            return { status: 'ok', data: 'deleted' } if Business::PersonaBusiness.instance.delete(params[:id])
+
+            'nothing happend!'
+          end
 
           # resource end
         end
-
       end
     end
   end

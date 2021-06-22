@@ -5,7 +5,8 @@ module DAO
   class PersonaDAO
     include Singleton
 
-    def add(dni, name, age, status,description)
+    def add(dni, name, age, status, description)
+      # using datasets
       model.create(
         dni: dni,
         name: name,
@@ -15,7 +16,7 @@ module DAO
       )
     end
 
-    def update(dni, name, age, status,description)
+    def update(dni, name, age, status ,description)
       person = model.find(dni: dni)
       person.update(
         dni: dni,
@@ -24,8 +25,17 @@ module DAO
         status: status ||person.status,
         description: description ||person.description
       )
-    end
 
+
+      # p.dni = dni
+      # p.name = name || p.name
+      # p.age = age || p.age
+      # p.status = status || p.status
+      # p.description = description || p.description
+      # p "valido o no #{p.valid?}"
+      # p.save   
+    end
+    
     def delete(id)
       model.where(id: id).delete
     end

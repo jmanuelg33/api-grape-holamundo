@@ -3,7 +3,7 @@
 require './api/dao/persona_dao'
 
 module Business
-  # TrackingInfo class
+  
   class PersonaBusiness
     include Singleton
 
@@ -11,17 +11,15 @@ module Business
       persona = DAO::PersonaDAO.instance.search(person[:dni])
       if persona
         DAO::PersonaDAO.instance.update(person[:dni], person[:name],
-          person[:age], person[:status],person[:description])
+                                        person[:age], person[:status], person[:description])
       else
-        DAO::PersonaDAO.instance.add(person[:dni], person[:name], 
-          person[:age], person[:status],person[:description])
+        DAO::PersonaDAO.instance.add(person[:dni], person[:name],
+                                     person[:age], person[:status], person[:description])
       end
     end
 
     def delete(id)
-      if self.get_person(id)
-        DAO::PersonaDAO.instance.delete(id)
-      end
+      DAO::PersonaDAO.instance.delete(id) if get_person(id)
     end
 
     def find(dni)

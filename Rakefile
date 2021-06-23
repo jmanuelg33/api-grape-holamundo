@@ -5,9 +5,10 @@ require './api/tasks/service_config'
 
 namespace :db do
   desc 'Perform migration up to latest migration available'
-  task :migrate do
+  task :migrate, [:version] do |_t, args|
     Sequel.extension :migration
-    Sequel::Migrator.run(ServiceConfig[:database], 'api/database/migrations')
+    version = args[:version].to_i if args[:version]
+    Sequel::Migrator.run(ServiceConfig[:database], 'api/database/migrations', target: version)
   end
 
   desc 'run seeds'

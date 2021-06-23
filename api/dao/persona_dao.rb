@@ -1,7 +1,6 @@
 require './api/models/persona'
 
 module DAO
-
   class PersonaDAO
     include Singleton
 
@@ -20,13 +19,13 @@ module DAO
       person = model.first(dni: dni)
       person.update(
         dni: dni,
-        name: name ||person.name,
+        name: name || person.name,
         age: age || person.age,
-        status: status ||person.status,
-        description: description ||person.description
+        status: status || person.status,
+        description: description || person.description
       )
     end
-    
+
     def delete(id)
       model.where(id: id).delete
     end
@@ -49,6 +48,4 @@ module DAO
       Models::Persona
     end
   end
-
-
 end

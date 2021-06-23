@@ -6,7 +6,7 @@ module Models
   class Persona < Sequel::Model(ServiceConfig[:database])
     unrestrict_primary_key
 
-    one_to_many :addresses, class: Models::Address
+    one_to_many :addresses, key: :persona_id
 
     def validate
       super

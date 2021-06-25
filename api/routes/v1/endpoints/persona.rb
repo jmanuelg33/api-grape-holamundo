@@ -7,9 +7,14 @@ module Routes
         resource :persona do
           # resource begin
 
+          before do
+           @output ||= 'v1-'
+          end
+
           # fn index
           desc 'testing calls'
           get do
+            puts @output
             Business::PersonaBusiness.instance.all
           end
 

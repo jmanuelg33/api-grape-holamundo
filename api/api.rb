@@ -8,7 +8,9 @@ module MyApp
     version :v1
     content_type :json, 'application/json'
 
-    rescue_from :all
+    rescue_from :all do |e|
+      Rack::Response.new([e.message], 500, 'Content-type' => 'text/error')
+    end
 
     helpers do
       def logger

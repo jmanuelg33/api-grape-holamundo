@@ -15,6 +15,7 @@ source 'http://rubygems.org' do
   gem 'sequel'
   gem 'sequel_postgresql_triggers'
   gem 'sequel-seed'
+  gem 'puma'
 
   group :test do
     gem 'facets'

@@ -6,7 +6,7 @@ module AUTH
     include Singleton
 
     def login(username, password)
-      user = DAO::UserRoleDAO.instance.search_user username   #SIEMPRE DEVUELVE NIL AUNQUE DESDE LA CONSOLA DE PRY SI DEVUELVE
+      user = DAO::UserRoleDAO.instance.search_user username
 
       if user && user.password_eql?(password)
         token = AUTH::Jwt.instance.encode(

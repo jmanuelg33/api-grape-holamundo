@@ -16,7 +16,7 @@ module Routes
             requires :username, type: String
             requires :password, type: String
           end
-          get :login do
+          post :login do
             AUTH::Authentication.instance.login(params[:username], params[:password])
           end
 

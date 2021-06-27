@@ -14,7 +14,6 @@ module Routes
           # fn index
           desc 'testing calls'
           get do
-            puts @output
             Business::PersonaBusiness.instance.all
           end
 

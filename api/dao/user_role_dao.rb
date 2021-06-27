@@ -33,6 +33,10 @@ module DAO
     end
 
     # user
+    def search_user(username)
+      model_user.find(username: username)
+    end
+
     def add_user(name, username, password)
       model_user.create(
         name: name,
@@ -41,22 +45,18 @@ module DAO
       )
     end
 
-    def update_user(name, username, password)
+    def update_user(name, username, new_password)
       user = model_user.first(username: username)
       if user
         user.update(
           name: name || user.name,
-          password: password || user.password
+          password: new_password
         )
       end
     end
 
     def delete_user(id)
       model_user.where(id: id).destroy
-    end
-
-    def search_user(username)
-      model_user.find(username: username)
     end
 
     def all_users

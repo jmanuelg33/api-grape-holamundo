@@ -6,7 +6,7 @@ Sequel.migration do
   up do
     extension :pg_triggers
 
-    alter_table(:adresses) do
+    alter_table(:addresses) do
       add_foreign_key :persona_id, :personas
     end
   end

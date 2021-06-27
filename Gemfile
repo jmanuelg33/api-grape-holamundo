@@ -1,4 +1,5 @@
 source 'http://rubygems.org' do
+  gem 'bcrypt'
   gem 'dotenv'
   gem 'dry-auto_inject'
   gem 'dry-container'
@@ -6,6 +7,8 @@ source 'http://rubygems.org' do
   gem 'dry-validation'
   gem 'grape'
   gem 'grape-entity'
+  gem 'json'
+  gem 'jwt'
   gem 'pg'
   gem 'rack'
   gem 'rake'

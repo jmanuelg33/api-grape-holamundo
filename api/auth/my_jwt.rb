@@ -4,20 +4,16 @@ require 'jwt'
 require './api/tasks/service_config'
 
 module AUTH
-  # Json Web Token Class
   class Jwt
     include Singleton
 
-    def encode(payload, exp = 180)
-      payload[:exp] = exp.to_i
-
+    def encode(payload)
+      payload[:exp] = Time.now.to_i + 4 * 3600
       JWT.encode(payload, secret)
     end
 
     def decode(token)
-      JWT.decode(token, secret)[0]
-    rescue StandardError => e
-      raise e.message
+      JWT.decode(token, secret, false)[0]
     end
 
     private

@@ -7,10 +7,7 @@ module Routes
         resource :auth do
           # resource begin
 
-          before do
-          end
-
-          # fn index
+          # fn LOGIN
           desc 'login'
           params do
             requires :username, type: String
@@ -18,6 +15,13 @@ module Routes
           end
           post :login do
             AUTH::Authentication.instance.login(params[:username], params[:password])
+          end
+
+          # fn prueba
+          desc 'prueba'
+          post :test do
+            grant!(['admin','user'])
+            'acceso otorgado'
           end
 
           # resource end

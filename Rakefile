@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'sequel'
-require './api/tasks/service_config'
+require './api/config/service_config'
 
 namespace :db do
   desc 'Perform migration up to latest migration available'
@@ -16,5 +16,12 @@ namespace :db do
     Sequel.extension :seed
     Sequel::Seed.setup(:development)
     Sequel::Seeder.apply(ServiceConfig[:database], './api/database/seeds')
+  end
+end
+
+namespace :swagger
+  desc 'Generate documentation for api'
+  task :docs do
+    
   end
 end

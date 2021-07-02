@@ -1,5 +1,5 @@
 require 'sequel'
-require './api/tasks/service_config'
+require './api/config/service_config'
 
 module Models
   class Role < Sequel::Model(ServiceConfig[:database])

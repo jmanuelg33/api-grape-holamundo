@@ -1,0 +1,80 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css" />
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <style>
+      html
+      {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+      }
+
+      *,
+      *:before,
+      *:after
+      {
+        box-sizing: inherit;
+      }
+
+      body
+      {
+        margin:0;
+        background: #fafafa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="swagger-ui">
+    </div>
+
+    <script src="./swagger-ui-bundle.js" charset="UTF-8"> </script>
+    <script src="./swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+    <script>
+    window.onload = function() {
+      // Begin Swagger UI call region
+      const ui = SwaggerUIBundle({
+        url: "http://localhost:9292/api/v1/swagger_doc",
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout",
+
+        requestInterceptor: function(request) {
+          // request.headers['X-CSRF-TOKEN'] = @json(csrf_token());
+          // return request;
+          // console.log(request)
+        },
+
+        responseInterceptor: function (response) {
+            // if (response.status >= 200 && response.status < 300) {
+            //     var docsUrl = @json(config('l5-swagger.paths.docs_json'));
+            //     var storageKeys = Object.keys(window.localStorage);
+
+            //     if (response.url.indexOf(urlToDocs) < 0 && storageKeys.indexOf('token') < 0 && response.obj) {
+            //       window.localStorage.setItem('token', JSON.stringify(response.obj));
+            //     }
+            // }
+            // // return response;
+            // console.log(response)
+        },
+      });
+      // End Swagger UI call region
+
+      window.ui = ui;
+    };
+  </script>
+  </body>
+</html>

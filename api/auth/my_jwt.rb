@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'jwt'
-require './api/tasks/service_config'
+require './api/config/service_config'
 
 module AUTH
   class Jwt
@@ -9,17 +9,17 @@ module AUTH
 
     def encode(payload)
       payload[:exp] = Time.now.to_i + 4 * 3600
-      JWT.encode(payload, secret)
+      JWT.encode(payload, secret, 'HS256')
     end
 
     def decode(token)
-      JWT.decode(token, secret, false)[0]
+      JWT.decode(token, secret, true, {algorithm: 'HS256'})[0]
     end
 
     private
 
     def secret
-      ServiceConfig[:configuration]['JWT_SECRET']
+      ServiceConfig[:configuration]['SECRET']
     end
   end
 end

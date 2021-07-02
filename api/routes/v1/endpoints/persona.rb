@@ -8,11 +8,11 @@ module Routes
           # resource begin
 
           before do
-           @output ||= 'v1-'
+            @output ||= 'v1-'
           end
 
           # fn index
-          desc 'testing calls'
+          desc 'get all personas'
           get do
             Business::PersonaBusiness.instance.all
           end
@@ -34,11 +34,11 @@ module Routes
           desc 'create a person'
           params do
             requires :persona, type: Hash do
-              requires :name, type: String, allow_blank: false
-              requires :age, type: Integer, allow_blank: false
-              requires :dni, type: String, allow_blank: false
-              requires :status, type: String, values: %w[single maried]
-              requires :description, type: String 
+              requires :name, type: String, allow_blank: false, documentation: { param_type: 'query' }
+              requires :age, type: Integer, allow_blank: false, documentation: { param_type: 'query' }
+              requires :dni, type: String, allow_blank: false, documentation: { param_type: 'query' }
+              requires :status, type: String, values: %w[single maried], documentation: { param_type: 'query' }
+              requires :description, type: String, documentation: { param_type: 'query' }
             end
           end
 
@@ -54,14 +54,14 @@ module Routes
           desc 'update a person'
           params do
             requires :persona, type: Hash do
-              optional :name, type: String
-              optional :age, type: Integer
-              requires :dni, type: String, allow_blank: false
+              optional :name, type: String, documentation: { param_type: 'query' }
+              optional :age, type: Integer, documentation: { param_type: 'query' }
+              requires :dni, type: String, allow_blank: false, documentation: { param_type: 'query' }
               optional :status, type: Symbol,
                                 values: {
                                   value: %i[single maried],
                                   message: 'must be a single or maried status!'
-                                }
+                                }, documentation: { param_type: 'query' }
             end
           end
 

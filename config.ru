@@ -1,5 +1,5 @@
 require 'rack'
-require_relative 'api/api'
+require_relative 'api/root'
 require 'rake'
 
 # load 'Rakefile'
@@ -8,4 +8,5 @@ require 'rake'
 # puts 'Running seeds'
 # Rake::Task['db:seed'].invoke
 
-run MyApp::API
+use Rack::Static, :urls => ["/public"]
+run MyApp::Root

@@ -16,6 +16,7 @@ source 'http://rubygems.org' do
   gem 'sequel_postgresql_triggers'
   gem 'sequel-seed'
   gem 'puma'
+  gem 'rack-cors'
 
   group :test do
     gem 'facets'
@@ -24,5 +25,6 @@ source 'http://rubygems.org' do
 
   group :development do
     gem 'shotgun'
+    gem 'grape-swagger'
   end
 end

@@ -10,21 +10,24 @@ source 'http://rubygems.org' do
   gem 'json'
   gem 'jwt'
   gem 'pg'
+  gem 'puma'
   gem 'rack'
+  gem 'rack-cors'
   gem 'rake'
   gem 'sequel'
   gem 'sequel_postgresql_triggers'
   gem 'sequel-seed'
-  gem 'puma'
-  gem 'rack-cors'
 
   group :test do
     gem 'facets'
     gem 'faker'
+    gem 'rack-test'
+    gem 'rspec'
+    gem 'rspec-grape'
   end
 
   group :development do
-    gem 'shotgun'
     gem 'grape-swagger'
+    gem 'shotgun'
   end
 end

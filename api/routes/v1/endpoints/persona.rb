@@ -80,9 +80,7 @@ module Routes
           end
 
           delete do
-            return { status: 'ok', data: 'deleted' } if Business::PersonaBusiness.instance.delete(params[:id])
-
-            'nothing happend!'
+            Business::PersonaBusiness.instance.delete(params[:id])
           end
 
           # resource end

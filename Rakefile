@@ -18,10 +18,3 @@ namespace :db do
     Sequel::Seeder.apply(ServiceConfig[:database], './api/database/seeds')
   end
 end
-
-namespace :swagger
-  desc 'Generate documentation for api'
-  task :docs do
-    
-  end
-end

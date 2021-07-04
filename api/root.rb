@@ -2,10 +2,6 @@ require 'grape'
 require 'rack/cors'
 require 'grape-swagger'
 require_relative 'routes/v1/routes'
-require './api/auth/authentication'
-require './api/auth/user'
-require './api/dao/user_role_dao'
-require_relative 'routes/v1/endpoints/helpers/auth'
 
 module MyApp
   class Root < Grape::API
@@ -31,7 +27,7 @@ module MyApp
       end
     end
 
-    helpers SecurityHelpers
+    # helpers otherHelpers
 
     mount Routes::V1::API
     # http://localhost:9292/api/v1/swagger_doc

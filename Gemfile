@@ -17,6 +17,7 @@ source 'http://rubygems.org' do
   gem 'sequel'
   gem 'sequel_postgresql_triggers'
   gem 'sequel-seed'
+  gem 'redis'
 
   group :test do
     gem 'facets'

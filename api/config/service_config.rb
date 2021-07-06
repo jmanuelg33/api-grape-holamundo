@@ -4,6 +4,7 @@ require 'dry-container'
 require 'dry-auto_inject'
 require './api/utils/config'
 require 'sequel'
+require 'redis'
 
 require 'dotenv'
 Dotenv.overload
@@ -24,6 +25,10 @@ class ServiceConfig
                    database: configuration['DB_DATABASE'],
                    user: configuration['DB_USER'],
                    password: configuration['DB_PASSWORD'])
+  end
+
+  register :redis, memoize: true do
+    Redis.new(url: "redis://:#{ENV.fetch('REDIS_PASS')}@localhost:6379")
   end
 end
 

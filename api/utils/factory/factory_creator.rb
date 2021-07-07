@@ -4,9 +4,9 @@ class FactoryCreator
     def self.create(table_hash)
       case table_hash['type']
       when 'FEDEX'
-        Fedex.new(table_hash['tracking_info'])
+        Fedex.new(table_hash['tracking_number'])
       when 'prueba2'
-        Prueba2.new(table_hash['tracking_info'])
+        Prueba2.new(table_hash['tracking_number'])
       else
         raise "Tracking strategy not implemented: #{type}"
       end

@@ -14,10 +14,11 @@ source 'http://rubygems.org' do
   gem 'rack'
   gem 'rack-cors'
   gem 'rake'
+  gem 'redis'
   gem 'sequel'
   gem 'sequel_postgresql_triggers'
   gem 'sequel-seed'
-  gem 'redis'
+  gem 'sidekiq'
 
   group :test do
     gem 'facets'
